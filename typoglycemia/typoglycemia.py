@@ -7,9 +7,9 @@
 # too short to change.
 #
 
-
 #
-# 2016-11-14
+# This example takes a multi-word string as a command line argument.
+#     e.g:   python typoglycemia.py "Remains to be seen if glass caskets become popular"
 #
 
 import random
@@ -19,20 +19,23 @@ import re
 
 def shuffle_word(word):
     'Randomly rearrange the middle letters of a word.'
-    #word=sys.argv[1]
-    if(len(word) > 3):
-        middle_list = list(word[1:-1])
-        middle = ''
-        while(middle=='' or middle==word[1:-1]):
-            # do this in a loop so we can make sure the output is different
-            random.shuffle(middle_list)
-            middle = ''.join(middle_list)
-        return(word[0] + middle + word[-1])
-    else:
+    if(len(word) < 4):
+        # Can't rearrange words with less than 4 letters
         return(word)
+    middle_list = list(word[1:-1])
+    num_unique_chars = len(set(middle_list)) # python sets only contain unique elements
+    if(num_unique_chars == 1):
+        # Can't rearrange words where the middle letters are identical (e.g. "look")
+        return(word)
+    middle = ''
+    while(middle=='' or middle==word[1:-1]):
+        # do this in a loop so we can make sure the output is different
+        random.shuffle(middle_list)
+        middle = ''.join(middle_list)
+    return(word[0] + middle + word[-1])
 
 
-def gibberish(mystr):
+def parse_string(mystr):
     'Rearrange the middle letters in all words of a string.'
     #mystr = sys.argv[1]
     mylist = list(mystr)
@@ -49,4 +52,4 @@ def gibberish(mystr):
     print(newstr)
 
 
-gibberish(sys.argv[1])
+parse_string(sys.argv[1])
