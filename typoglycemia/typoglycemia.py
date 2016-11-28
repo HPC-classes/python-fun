@@ -8,7 +8,11 @@
 #
 
 #
-# This example takes a multi-word string as a command line argument.
+# This example uses slices, lists, sets, loops, conditional 
+# statements, function definitions, command line arguments, 
+# and a simple regular expression.
+#
+# It takes a multi-word string as a command line argument.
 #     e.g:   python typoglycemia.py "Remains to be seen if glass caskets become popular"
 #
 
@@ -37,7 +41,6 @@ def shuffle_word(word):
 
 def parse_string(mystr):
     'Rearrange the middle letters in all words of a string.'
-    #mystr = sys.argv[1]
     mylist = list(mystr)
     newstr=''
     tempstr=''
